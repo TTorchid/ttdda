@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.sugar.dda.common.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebFilter(filterName = "loginCheckFilter",urlPatterns = "/*")
+@ResponseBody
 @Slf4j
 public class LoginCheckFilter implements Filter {
     //路径匹配器，支持通配符
