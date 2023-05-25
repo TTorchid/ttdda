@@ -33,7 +33,7 @@ public class EmployeeController {
 
         //1、将页面提交的密码password进行md5加密处理
         String password = employee.getPassword();
-        password = DigestUtils.md5DigestAsHex(password.getBytes());
+//        password = DigestUtils.md5DigestAsHex(password.getBytes());
 
         //2、根据页面提交的用户名username查询数据库
         LambdaQueryWrapper<Employee> queryWrapper = new LambdaQueryWrapper<>();
