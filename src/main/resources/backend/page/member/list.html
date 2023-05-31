@@ -22,7 +22,7 @@
       <div class="tableBar">
         <el-input
           v-model="input"
-          placeholder="请输入员工姓名"
+          placeholder="请输入药物或疾病名称"
           style="width: 250px"
           clearable
            @keyup.enter.native="handleQuery"
@@ -38,7 +38,7 @@
           type="primary"
           @click="addMemberHandle('add')"
         >
-          + 添加员工
+          + 添加DDA
         </el-button>
       </div>
       <el-table
@@ -48,21 +48,21 @@
       >
         <el-table-column
           prop="name"
-          label="员工姓名"
+          label="Drugs"
         ></el-table-column>
         <el-table-column
           prop="username"
-          label="账号"
+          label="Diseases"
         ></el-table-column>
-        <el-table-column
-          prop="phone"
-          label="手机号"
-        ></el-table-column>
-        <el-table-column label="账号状态">
-          <template slot-scope="scope">
-            {{ String(scope.row.status) === '0' ? '已禁用' : '正常' }}
-          </template>
-        </el-table-column>
+<!--        <el-table-column-->
+<!--          prop="phone"-->
+<!--          label="手机号"-->
+<!--        ></el-table-column>-->
+<!--        <el-table-column label="账号状态">-->
+<!--          <template slot-scope="scope">-->
+<!--            {{ String(scope.row.status) === '0' ? '已禁用' : '正常' }}-->
+<!--          </template>-->
+<!--        </el-table-column>-->
         <el-table-column
           label="操作"
           width="160"
@@ -157,13 +157,13 @@
               window.parent.menuHandle({
                 id: '2',
                 url: '/backend/page/member/add.html',
-                name: '添加员工'
+                name: '添加DDA'
               },true)
             } else {
               window.parent.menuHandle({
                 id: '2',
                 url: '/backend/page/member/add.html?id='+st,
-                name: '修改员工'
+                name: '修改DDA'
               },true)
             }
           },
