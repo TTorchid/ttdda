@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="../../styles/page.css" />
 </head>
 <body>
-<div class="addBrand-container" id="member-add-app">
+<div class="addBrand-container" id="drugs-add-app">
   <div class="container">
     <el-form
             ref="ruleForm"
@@ -21,16 +21,16 @@
             label-width="180px"
             class="demo-ruleForm"
     >
-      <el-form-item label="药物DrugBank ID:" prop="username">
-        <el-input v-model="ruleForm.username" placeholder="请输入DrugBank ID" maxlength="20"/>
+      <el-form-item label="药物名:" prop="drugname">
+        <el-input v-model="ruleForm.drugname" placeholder="请输入药物全称" maxlength="20"/>
       </el-form-item>
       <el-form-item
-              label="疾病Mesh ID:"
-              prop="name"
+              label="药物DrugBank ID:"
+              prop="drugbankid"
       >
         <el-input
-                v-model="ruleForm.name"
-                placeholder="请输入Mesh ID"
+                v-model="ruleForm.drugbankid"
+                placeholder="请输入DrugBank ID"
                 maxlength="20"
         />
       </el-form-item>
@@ -100,40 +100,37 @@
 <script src="../../js/index.js"></script>
 <script>
   new Vue({
-    el: '#member-add-app',
+    el: '#drugs-add-app',
     data() {
       return {
-        id: '',
+        drugbankid: '',
         actionType : '',
         ruleForm : {
-          'name': '',
-          'phone': '',
-          'sex': '男',
-          'idNumber': '',
-          username: ''
+          'drugname': '',
+          'drugbankid': ''
         }
       }
     },
     computed: {
       rules () {
         return {
-          //账号
-          username: [
-            {
-              required: true, 'validator': checkUserName, trigger: 'blur'
-            }
-          ],
+          // //账号
+          // username: [
+          //   {
+          //     required: true, 'validator': checkUserName, trigger: 'blur'
+          //   }
+          // ],
           //姓名
-          name: [{ required: true, 'validator': checkName, 'trigger': 'blur' }],
-          'phone': [{ 'required': true, 'validator': checkPhone, 'trigger': 'blur' }],
-          'idNumber': [{ 'required': true, 'validator': validID, 'trigger': 'blur' }]
+          drugname: [{ required: true, 'validator': checkName, 'trigger': 'blur' }],
+          // 'drugbankid': [{ 'required': true, 'validator': checkPhone, 'trigger': 'blur' }],
+          'drugbankid': [{ 'required': true, 'validator': validID, 'trigger': 'blur' }]
         }
       }
     },
     created() {
-      this.id = requestUrlParam('id')
-      this.actionType = this.id ? 'edit' : 'add'
-      if (this.id) {
+      this.drugbankid = requestUrlParam('drugbankid')
+      this.actionType = this.drugbankid ? 'edit' : 'add'
+      if (this.drugbankid) {
         this.init()
       }
     },
@@ -141,12 +138,12 @@
     },
     methods: {
       async init () {
-        queryEmployeeById(this.id).then(res => {
+        queryDrugsById(this.drugbankid).then(res => {
           console.log(res)
           if (String(res.code) === '1') {
             console.log(res.data)
             this.ruleForm = res.data
-            this.ruleForm.sex = res.data.sex === '0' ? '女' : '男'
+            // this.ruleForm.sex = res.data.sex === '0' ? '女' : '男'
             // this.ruleForm.password = ''
           } else {
             this.$message.error(res.msg || '操作失败')
@@ -158,23 +155,17 @@
           if (valid) {
             if (this.actionType === 'add') {
               const params = {
-                ...this.ruleForm,
-                sex: this.ruleForm.sex === '女' ? '0' : '1'
+                ...this.ruleForm
               }
-              addEmployee(params).then(res => {
+              addDrugs(params).then(res => {
                 if (res.code === 1) {
-                  this.$message.success('员工添加成功！')
+                  this.$message.success('药物添加成功！')
                   if (!st) {
                     this.goBack()
                   } else {
                     this.ruleForm = {
-                      username: '',
-                      'name': '',
-                      'phone': '',
-                      // 'password': '',
-                      // 'rePassword': '',/
-                      'sex': '男',
-                      'idNumber': ''
+                      'drugname': '',
+                      'drugbankid': ''
                     }
                   }
                 } else {
@@ -185,12 +176,11 @@
               })
             } else {
               const params = {
-                ...this.ruleForm,
-                sex: this.ruleForm.sex === '女' ? '0' : '1'
+                ...this.ruleForm
               }
-              editEmployee(params).then(res => {
+              editDrugs(params).then(res => {
                 if (res.code === 1) {
-                  this.$message.success('员工信息修改成功！')
+                  this.$message.success('药物信息修改成功！')
                   this.goBack()
                 } else {
                   this.$message.error(res.msg || '操作失败')
@@ -208,8 +198,8 @@
       goBack(){
         window.parent.menuHandle({
           id: '2',
-          url: '/backend/page/member/list.html',
-          name: '员工管理'
+          url: '/backend/page/drugs/list.html',
+          name: '药物管理'
         },false)
       }
     }

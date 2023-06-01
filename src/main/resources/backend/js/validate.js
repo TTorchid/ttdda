@@ -26,15 +26,11 @@ function checkUserName (rule, value, callback){
   }
 }
 
-//校验姓名
+//校验 名
 function checkName (rule, value, callback){
-  if (value == "") {
-    callback(new Error("请输入姓名"))
-  } else if (value.length > 12) {
-    callback(new Error("账号长度应是1-12"))
-  } else {
+
     callback()
-  }
+
 }
 
 function checkPhone (rule, value, callback){
@@ -51,12 +47,8 @@ function checkPhone (rule, value, callback){
 
 function validID (rule,value,callback) {
   // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
-  let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
-  if(value == '') {
-    callback(new Error('请输入身份证号码'))
-  } else if (reg.test(value)) {
+  // let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
+
     callback()
-  } else {
-    callback(new Error('身份证号码不正确'))
-  }
+
 }

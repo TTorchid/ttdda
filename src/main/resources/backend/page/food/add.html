@@ -21,49 +21,49 @@
         label-width="180px"
         class="demo-ruleForm"
       >
-        <el-form-item label="账号:" prop="username">
-          <el-input v-model="ruleForm.username" placeholder="请输入账号" maxlength="20"/>
+        <el-form-item label="疾病名:" prop="username">
+          <el-input v-model="ruleForm.username" placeholder="请输入疾病全称" maxlength="20"/>
         </el-form-item>
         <el-form-item
-          label="员工姓名:"
+          label="疾病Mesh ID:"
           prop="name"
         >
           <el-input
             v-model="ruleForm.name"
-            placeholder="请输入员工姓名"
+            placeholder="请输入Mesh ID"
             maxlength="20"
           />
         </el-form-item>
 
-        <el-form-item
-          label="手机号:"
-          prop="phone"
-        >
-          <el-input
-            v-model="ruleForm.phone"
-            placeholder="请输入手机号"
-            maxlength="20"
-          />
-        </el-form-item>
-        <el-form-item
-          label="性别:"
-          prop="sex"
-        >
-          <el-radio-group v-model="ruleForm.sex">
-            <el-radio label="男"></el-radio>
-            <el-radio label="女"></el-radio>
-          </el-radio-group>
-        </el-form-item>
-        <el-form-item
-          label="身份证号:"
-          prop="idNumber"
-        >
-          <el-input
-            v-model="ruleForm.idNumber"
-            placeholder="请输入身份证号"
-            maxlength="20"
-          />
-        </el-form-item>
+<!--        <el-form-item-->
+<!--          label="手机号:"-->
+<!--          prop="phone"-->
+<!--        >-->
+<!--          <el-input-->
+<!--            v-model="ruleForm.phone"-->
+<!--            placeholder="请输入手机号"-->
+<!--            maxlength="20"-->
+<!--          />-->
+<!--        </el-form-item>-->
+<!--        <el-form-item-->
+<!--          label="性别:"-->
+<!--          prop="sex"-->
+<!--        >-->
+<!--          <el-radio-group v-model="ruleForm.sex">-->
+<!--            <el-radio label="男"></el-radio>-->
+<!--            <el-radio label="女"></el-radio>-->
+<!--          </el-radio-group>-->
+<!--        </el-form-item>-->
+<!--        <el-form-item-->
+<!--          label="身份证号:"-->
+<!--          prop="idNumber"-->
+<!--        >-->
+<!--          <el-input-->
+<!--            v-model="ruleForm.idNumber"-->
+<!--            placeholder="请输入身份证号"-->
+<!--            maxlength="20"-->
+<!--          />-->
+<!--        </el-form-item>-->
         <div class="subBox address">
           <el-form-item>
             <el-button  @click="goBack()">
